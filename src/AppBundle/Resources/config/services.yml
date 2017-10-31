@@ -1,0 +1,6 @@
+imports:
+  - { resource: "factories.yml" }
+  - { resource: "managers.yml" }
+  - { resource: "form_type_selectors.yml" }
+  - { resource: "loggers.yml" }
+  - { resource: "security.yml" }

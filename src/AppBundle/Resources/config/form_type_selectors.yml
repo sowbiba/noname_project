@@ -1,0 +1,16 @@
+services:
+  app.type.selector.role:
+      class: AppBundle\Form\SelectorType\RoleSelectorType
+      arguments:
+          - '@service_container'
+      tags:
+          - { name: form.type }
+      shared: true
+
+  app.type.selector.product_type:
+      class: AppBundle\Form\SelectorType\ProductTypeSelectorType
+      arguments:
+          - '@service_container'
+      tags:
+          - { name: form.type }
+      shared: true

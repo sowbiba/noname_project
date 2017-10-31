@@ -1,0 +1,23 @@
+authentication:
+    type: rest
+    resource: AppBundle\Controller\AuthenticationController
+
+delivery_type:
+    type: rest
+    resource: AppBundle\Controller\Api\DeliveryTypeController
+
+product_type:
+    type: rest
+    resource: AppBundle\Controller\Api\ProductTypeController
+
+user:
+    type: rest
+    resource: AppBundle\Controller\Api\UserController
+
+role:
+    type: rest
+    resource: AppBundle\Controller\Api\RoleController
+
+product:
+    type: rest
+    resource: AppBundle\Controller\Api\ProductController

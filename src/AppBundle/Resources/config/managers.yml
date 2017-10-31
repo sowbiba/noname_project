@@ -1,0 +1,40 @@
+services:
+    app.manager.user:
+        class: AppBundle\Manager\UserManager
+        factory: ['@app.manager.factory', get]
+        arguments:
+            - '@service_container'
+            - "user"
+        shared: false
+    app.manager.role:
+        class: AppBundle\Manager\RoleManager
+        factory: ['@app.manager.factory', get]
+        arguments:
+            - '@service_container'
+            - role
+        shared: true
+        public: true
+
+    app.manager.delivery_type:
+        class: AppBundle\Manager\DeliveryTypeManager
+        factory: ['@app.manager.factory', get]
+        arguments:
+            - '@service_container'
+            - delivery_type
+        shared: false
+
+    app.manager.product_type:
+        class: AppBundle\Manager\ProductTypeManager
+        factory: ['@app.manager.factory', get]
+        arguments:
+            - '@service_container'
+            - product_type
+        shared: false
+
+    app.manager.product:
+        class: AppBundle\Manager\ProductManager
+        factory: ['@app.manager.factory', get]
+        arguments:
+            - '@service_container'
+            - product
+        shared: false

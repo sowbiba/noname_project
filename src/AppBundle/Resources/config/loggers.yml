@@ -1,0 +1,14 @@
+services:
+    app.logger:
+        class: Symfony\Bridge\Monolog\Logger
+        arguments: ['applog', ['@monolog.handler.applog']]
+        tags:
+            - { name: monolog.logger, channel: app }
+
+    app.security.logger:
+        class: Symfony\Bridge\Monolog\Logger
+        arguments:
+            - 'security_policy'
+            - ['@monolog.handler.security_policy']
+        tags:
+            - { name: monolog.logger, channel: security_policy }
