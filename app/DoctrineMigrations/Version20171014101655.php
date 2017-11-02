@@ -20,13 +20,13 @@ CREATE TABLE IF NOT EXISTS product (
   id INT AUTO_INCREMENT NOT NULL,
   product_type_id INT NOT NULL,
   name VARCHAR(255) NOT NULL,
-  price INT DEFAULT NULL,
-  description TEXT DEFAULT NULL,
+  price DECIMAL(20,9) NOT NULL,
+  description TEXT NOT NULL,
   photo_file VARCHAR(255) DEFAULT NULL,
   created_at DATETIME NOT NULL,
   updated_at DATETIME NOT NULL,
-  created_by INT NOT NULL,
-  updated_by INT DEFAULT NULL,
+  created_by VARCHAR(255) NOT NULL,
+  updated_by VARCHAR(255) DEFAULT NULL,
   INDEX IDX_D34A04AD14959723 (product_type_id),
   PRIMARY KEY(id)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB;

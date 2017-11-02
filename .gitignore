@@ -43,3 +43,6 @@
 
 # Database
 /app/config/databases.yml
+
+# Vendors
+vendor/*

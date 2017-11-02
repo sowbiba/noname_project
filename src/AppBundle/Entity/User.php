@@ -156,7 +156,7 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="token", type="string", length=255)
+     * @ORM\Column(name="token", type="string", length=255, nullable=true)
      *
      * @Serializer\Expose
      * @Serializer\Groups({

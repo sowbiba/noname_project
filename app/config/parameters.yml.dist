@@ -21,3 +21,7 @@ parameters:
 
     app_logs_filename:  app_logs
     app_logs_max_files: 10
+
+    tokens:
+        - "abcd"
+        - "efgh"

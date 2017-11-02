@@ -53,7 +53,7 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=false)
      *
      * @Serializer\Expose
      * @Serializer\Groups({
@@ -68,7 +68,7 @@ class Product
     /**
      * @var int
      *
-     * @ORM\Column(name="price", type="integer")
+     * @ORM\Column(name="price", type="decimal", precision=20, scale=9, nullable=false)
      *
      * @Serializer\Expose
      * @Serializer\Groups({
@@ -84,7 +84,7 @@ class Product
      * @var ProductType
      *
      * @ORM\ManyToOne(targetEntity="ProductType", inversedBy="products")
-     * @ORM\JoinColumn(name="product_type_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="product_type_id", referencedColumnName="id", nullable=false)
      *
      * @Serializer\Expose
      * @Serializer\Groups({
@@ -99,7 +99,7 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="photo_file", type="string", length=255)
+     * @ORM\Column(name="photo_file", type="string", length=255, nullable=true)
      *
      * @Serializer\Expose
      * @Serializer\Groups({
@@ -144,7 +144,7 @@ class Product
     /**
      * @var User
      *
-     * @ORM\Column(name="created_by", type="string", nullable=true)
+     * @ORM\Column(name="created_by", type="string", nullable=false)
      *
      * @Gedmo\Blameable(on="create")
      *
