@@ -20,8 +20,10 @@ CREATE TABLE IF NOT EXISTS stock (
   id INT AUTO_INCREMENT NOT NULL,
   product_id INT NOT NULL,
   quantity INT NOT NULL,
-  created_by INT NOT NULL,
-  updated_by INT NOT NULL,
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME NOT NULL,
+  created_by VARCHAR(255) NOT NULL,
+  updated_by VARCHAR(255) DEFAULT NULL,
   UNIQUE INDEX UNIQ_4B3656604584665A (product_id),
   PRIMARY KEY(id)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB;

@@ -21,3 +21,7 @@ role:
 product:
     type: rest
     resource: AppBundle\Controller\Api\ProductController
+
+stock:
+    type: rest
+    resource: AppBundle\Controller\Api\StockController

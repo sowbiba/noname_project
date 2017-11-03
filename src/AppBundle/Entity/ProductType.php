@@ -31,6 +31,8 @@ class ProductType
      *      "product_types_create",
      *      "product_types_read",
      *      "product_types_update",
+     *      "products_list",
+     *      "products_read",
      * })
      */
     private $id;
@@ -46,6 +48,8 @@ class ProductType
      *      "product_types_create",
      *      "product_types_read",
      *      "product_types_update",
+     *      "products_list",
+     *      "products_read",
      * })
      */
     private $name;

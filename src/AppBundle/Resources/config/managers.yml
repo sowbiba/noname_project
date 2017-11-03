@@ -38,3 +38,11 @@ services:
             - '@service_container'
             - product
         shared: false
+
+    app.manager.stock:
+        class: AppBundle\Manager\StockManager
+        factory: ['@app.manager.factory', get]
+        arguments:
+            - '@service_container'
+            - stock
+        shared: false

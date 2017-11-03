@@ -197,6 +197,8 @@ class Product
     {
         $this->commandDetails = new ArrayCollection();
         $this->cartDetails = new ArrayCollection();
+
+        $this->stock = new Stock($this);
     }
 
 

@@ -60,6 +60,12 @@ class ProductController extends ApiController
      *             "description"="Name for the product. Up to 255 characters.",
      *             "required"=false,
      *         },
+     *         {
+     *             "name"="productType",
+     *             "dataType"="integer",
+     *             "description"="Product's type id. Up to 11 digits.",
+     *             "required"=false,
+     *         },
      *     },
      *     parameters={
      *         {
@@ -314,6 +320,7 @@ class ProductController extends ApiController
             ->view($product, Response::HTTP_OK)
             ->setContext($context);
     }
+
     /**
      * @ApiDoc(
      *     section="Product",

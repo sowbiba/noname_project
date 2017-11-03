@@ -13,6 +13,7 @@ class ManagerFactory
     const MANAGER_USER = 'user';
     const MANAGER_ROLE = 'role';
     const MANAGER_PRODUCT = 'product';
+    const MANAGER_STOCK = 'stock';
 
     /**
      * @param ContainerInterface $container
@@ -56,6 +57,12 @@ class ManagerFactory
 
                 // todo: Use Product::class when the PHP version is >= 5.5
                 $manager = new Manager\ProductManager($container, 'AppBundle\Entity\Product', $form);
+                break;
+            case static::MANAGER_STOCK:
+                $form = $container->get('form.factory')->create('AppBundle\Form\Type\StockType');
+
+                // todo: Use Stock::class when the PHP version is >= 5.5
+                $manager = new Manager\StockManager($container, 'AppBundle\Entity\Stock', $form);
                 break;
             default:
                 throw new ManagerNotFoundException(sprintf("The '%s' manager does not exists", $type));
