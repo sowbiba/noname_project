@@ -46,3 +46,11 @@ services:
             - '@service_container'
             - stock
         shared: false
+
+    app.manager.command:
+        class: AppBundle\Manager\CommandManager
+        factory: ['@app.manager.factory', get]
+        arguments:
+            - '@service_container'
+            - command
+        shared: false

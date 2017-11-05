@@ -25,3 +25,7 @@ product:
 stock:
     type: rest
     resource: AppBundle\Controller\Api\StockController
+
+command:
+    type: rest
+    resource: AppBundle\Controller\Api\CommandController

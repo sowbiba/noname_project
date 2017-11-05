@@ -22,3 +22,19 @@ services:
       tags:
           - { name: form.type }
       shared: true
+
+  app.type.selector.user:
+      class: AppBundle\Form\SelectorType\UserSelectorType
+      arguments:
+          - '@service_container'
+      tags:
+          - { name: form.type }
+      shared: true
+
+  app.type.selector.delivery_type:
+      class: AppBundle\Form\SelectorType\DeliveryTypeSelectorType
+      arguments:
+          - '@service_container'
+      tags:
+          - { name: form.type }
+      shared: true

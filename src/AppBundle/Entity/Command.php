@@ -109,9 +109,8 @@ class Command
     private $commandDetails;
 
 
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->user = $user;
         $this->commandDetails = new ArrayCollection();
     }
 

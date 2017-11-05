@@ -334,7 +334,7 @@ class UserController extends ApiController
      *         {
      *             "name"="birthdate",
      *             "dataType"="string",
-     *             "description"="Birthdate of the user. Up to 255 characters.",
+     *             "description"="Birthdate of the user. Format dd/mm/yy.",
      *             "required"=false,
      *         },
      *         {
@@ -385,6 +385,7 @@ class UserController extends ApiController
             ->view($user, Response::HTTP_OK)
             ->setContext($context);
     }
+
     /**
      * @ApiDoc(
      *     section="User",
