@@ -6,9 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
- * FormType used to manage the creation and the update of stocks.
+ * FormType used to manage the creation and the update of commandDetails.
  */
-class StockType extends AbstractType
+class CommandDetailType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,7 +17,8 @@ class StockType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantity',   'Symfony\Component\Form\Extension\Core\Type\IntegerType')
+            ->add('product',        'AppBundle\Form\SelectorType\ProductSelectorType')
+            ->add('quantity',       'Symfony\Component\Form\Extension\Core\Type\IntegerType')
         ;
     }
 
@@ -28,7 +29,7 @@ class StockType extends AbstractType
     {
         $resolver->setDefaults([
             'csrf_protection' => false,
-            'data_class' => 'AppBundle\Entity\Stock',
+            'data_class' => 'AppBundle\Entity\CommandDetail',
         ]);
     }
 }

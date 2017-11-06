@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
- * FormType used to manage the creation and the update of users.
+ * FormType used to manage the creation and the update of commands.
  */
 class CommandType extends AbstractType
 {
@@ -26,11 +26,6 @@ class CommandType extends AbstractType
                 [
                     'format' => 'dd/MM/yyyy',
                     'widget' => 'single_text',
-                ]
-            )
-            ->add('commandDetails', 'Symfony\Component\Form\Extension\Core\Type\IntegerType',
-                [
-                    'required' => false
                 ]
             )
         ;

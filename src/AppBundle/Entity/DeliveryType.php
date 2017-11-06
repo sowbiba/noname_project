@@ -30,6 +30,10 @@ class DeliveryType
      *      "delivery_types_create",
      *      "delivery_types_read",
      *      "delivery_types_update",
+     *      "commands_list",
+     *      "commands_create",
+     *      "commands_read",
+     *      "commands_update",
      * })
      */
     private $id;
@@ -45,6 +49,10 @@ class DeliveryType
      *      "delivery_types_create",
      *      "delivery_types_read",
      *      "delivery_types_update",
+     *      "commands_list",
+     *      "commands_create",
+     *      "commands_read",
+     *      "commands_update",
      * })
      */
     private $name;

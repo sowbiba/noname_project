@@ -378,7 +378,7 @@ class Product
      *
      * @param int $createdBy
      *
-     * @return Command
+     * @return Product
      */
     public function setCreatedBy($createdBy)
     {
@@ -402,7 +402,7 @@ class Product
      *
      * @param int $updatedBy
      *
-     * @return Command
+     * @return Product
      */
     public function setUpdatedBy($updatedBy)
     {

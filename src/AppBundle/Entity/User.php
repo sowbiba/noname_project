@@ -34,6 +34,10 @@ class User implements UserInterface
      *      "users_read",
      *      "users_update",
      *      "authentication",
+     *      "commands_list",
+     *      "commands_create",
+     *      "commands_read",
+     *      "commands_update",
      * })
      */
     private $id;
@@ -50,6 +54,10 @@ class User implements UserInterface
      *      "users_read",
      *      "users_update",
      *      "authentication",
+     *      "commands_list",
+     *      "commands_create",
+     *      "commands_read",
+     *      "commands_update",
      * })
      */
     private $firstname;
@@ -66,6 +74,10 @@ class User implements UserInterface
      *      "users_read",
      *      "users_update",
      *      "authentication",
+     *      "commands_list",
+     *      "commands_create",
+     *      "commands_read",
+     *      "commands_update",
      * })
      */
     private $lastname;
