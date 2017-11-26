@@ -122,20 +122,6 @@ class CommandController extends ApiController
     }
 
     /**
-     * ->add('user',           'AppBundle\Form\SelectorType\UserSelectorType')
-    ->add('total',          'Symfony\Component\Form\Extension\Core\Type\IntegerType')
-    ->add('deliveryType',   'AppBundle\Form\SelectorType\DeliveryTypeSelectorType')
-    ->add('deliveryStatus', 'Symfony\Component\Form\Extension\Core\Type\IntegerType')
-    ->add('factureFile',    'Symfony\Component\Form\Extension\Core\Type\TextType')
-    ->add('deliveredAt',    'Symfony\Component\Form\Extension\Core\Type\DateType',
-    [
-    'format' => 'dd/MM/yyyy',
-    'widget' => 'single_text',
-    ]
-    )
-    ->add('commandDetails', 'Symfony\Component\Form\Extension\Core\Type\IntegerType')
-     */
-    /**
      * @ApiDoc(
      *     section="Command",
      *     description="Create new command",
@@ -160,7 +146,7 @@ class CommandController extends ApiController
      *         },
      *         {
      *             "name"="deliveryStatus",
-     *             "dataType"="integer",
+     *             "dataType"="string",
      *             "description"="The command delivery status. Choose between ...",
      *             "required"=false,
      *         },
@@ -269,33 +255,39 @@ class CommandController extends ApiController
      *     },
      *     parameters={
      *         {
-     *             "name"="name",
-     *             "dataType"="string",
-     *             "description"="Name for the group. Up to 255 characters.",
-     *             "required"=false,
-     *         },
-     *         {
-     *             "name"="description",
-     *             "dataType"="text",
-     *             "description"="The command description.",
-     *             "required"=false,
-     *         },
-     *         {
-     *             "name"="price",
+     *             "name"="user",
      *             "dataType"="integer",
-     *             "description"="The command cost. Up to 11 digits.",
+     *             "description"="The command user ID. Up to 11 digits.",
      *             "required"=false,
      *         },
      *         {
-     *             "name"="photoFile",
-     *             "dataType"="string",
-     *             "description"="Photo file path of the command. Up to 255 characters.",
-     *             "required"=false,
-     *         },
-     *         {
-     *             "name"="commandType",
+     *             "name"="deliveryType",
      *             "dataType"="integer",
-     *             "description"="Command's type id. Up to 11 digits.",
+     *             "description"="The command delivery type ID. Up to 11 digits.",
+     *             "required"=false,
+     *         },
+     *         {
+     *             "name"="deliveryStatus",
+     *             "dataType"="string",
+     *             "description"="The command delivery status. Choose between ...",
+     *             "required"=false,
+     *         },
+     *         {
+     *             "name"="total",
+     *             "dataType"="decimal",
+     *             "description"="The command total cost. Up to 11 digits.",
+     *             "required"=false,
+     *         },
+     *         {
+     *             "name"="factureFile",
+     *             "dataType"="string",
+     *             "description"="Facture file path of the command. Up to 255 characters.",
+     *             "required"=false,
+     *         },
+     *         {
+     *             "name"="deliveredAt",
+     *             "dataType"="string",
+     *             "description"="Command delivery date. Format dd/mm/yy.",
      *             "required"=false,
      *         },
      *     },

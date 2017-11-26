@@ -69,9 +69,9 @@ class Command
     private $orderedAt;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="total", type="integer")
+     * @ORM\Column(name="total", type="decimal", precision=20, scale=9)
      *
      * @Serializer\Expose
      * @Serializer\Groups({
@@ -292,7 +292,7 @@ class Command
     /**
      * Set total
      *
-     * @param integer $total
+     * @param float $total
      *
      * @return Command
      */
@@ -306,7 +306,7 @@ class Command
     /**
      * Get total
      *
-     * @return int
+     * @return float
      */
     public function getTotal()
     {

@@ -4,12 +4,17 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Cart
  *
  * @ORM\Table(name="cart")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CartRepository")
+ *
+ * @Serializer\AccessorOrder("custom", custom = {"id", "user", "createdAt", "updatedAt", "cartDetails"})
+ * @Serializer\ExclusionPolicy("all")
  */
 class Cart
 {
@@ -27,20 +32,48 @@ class Cart
      *
      * @ORM\OneToOne(targetEntity="User", inversedBy="cart")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     *
+     * @Serializer\Expose
+     * @Serializer\Groups({
+     *      "carts_list",
+     *      "carts_create",
+     *      "carts_read",
+     *      "carts_update",
+     * })
      */
     private $user;
 
     /**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="create")
+     *
      * @ORM\Column(name="created_at", type="datetime")
+     *
+     * @Serializer\Expose
+     * @Serializer\Groups({
+     *      "carts_list",
+     *      "carts_create",
+     *      "carts_read",
+     *      "carts_update",
+     * })
      */
     private $createdAt;
 
     /**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="update")
+     *
      * @ORM\Column(name="updated_at", type="datetime")
+     *
+     * @Serializer\Expose
+     * @Serializer\Groups({
+     *      "carts_list",
+     *      "carts_create",
+     *      "carts_read",
+     *      "carts_update",
+     * })
      */
     private $updatedAt;
 
@@ -48,16 +81,19 @@ class Cart
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="CartDetail", mappedBy="cart")
+     *
+     * @Serializer\Expose
+     * @Serializer\Groups({
+     *      "carts_create",
+     *      "carts_read",
+     *      "carts_update",
+     * })
      */
     private $cartDetails;
 
 
-    /**
-     * @param User $user
-     */
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->user = $user;
         $this->cartDetails = new ArrayCollection();
     }
 

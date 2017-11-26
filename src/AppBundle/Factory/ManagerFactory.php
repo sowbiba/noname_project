@@ -15,6 +15,8 @@ class ManagerFactory
     const MANAGER_PRODUCT = 'product';
     const MANAGER_STOCK = 'stock';
     const MANAGER_COMMAND = 'command';
+    const MANAGER_CART = 'cart';
+    const MANAGER_CART_DETAIL = 'cart_detail';
 
     /**
      * @param ContainerInterface $container
@@ -70,6 +72,18 @@ class ManagerFactory
 
                 // todo: Use Command::class when the PHP version is >= 5.5
                 $manager = new Manager\CommandManager($container, 'AppBundle\Entity\Command', $form);
+                break;
+            case static::MANAGER_CART:
+                $form = $container->get('form.factory')->create('AppBundle\Form\Type\CartType');
+
+                // todo: Use Cart::class when the PHP version is >= 5.5
+                $manager = new Manager\CartManager($container, 'AppBundle\Entity\Cart', $form);
+                break;
+            case static::MANAGER_CART_DETAIL:
+                $form = $container->get('form.factory')->create('AppBundle\Form\Type\CartDetailType');
+
+                // todo: Use CartDetail::class when the PHP version is >= 5.5
+                $manager = new Manager\CartDetailManager($container, 'AppBundle\Entity\CartDetail', $form);
                 break;
             default:
                 throw new ManagerNotFoundException(sprintf("The '%s' manager does not exists", $type));

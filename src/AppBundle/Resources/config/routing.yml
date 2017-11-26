@@ -29,3 +29,7 @@ stock:
 command:
     type: rest
     resource: AppBundle\Controller\Api\CommandController
+
+cart:
+    type: rest
+    resource: AppBundle\Controller\Api\CartController

@@ -33,13 +33,13 @@ class ProductSelectorType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'invalid_message' => 'validation.field.invalid.roles',
+                'invalid_message' => 'validation.field.invalid.product',
             ]
         );
     }
 
     public function getParent()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\TextType';
+        return 'Symfony\Component\Form\Extension\Core\Type\IntegerType';
     }
 }

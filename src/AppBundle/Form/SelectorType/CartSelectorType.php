@@ -2,38 +2,38 @@
 
 namespace AppBundle\Form\SelectorType;
 
-use AppBundle\Manager\UserManager;
+use AppBundle\Manager\CartManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use AppBundle\Form\DataTransformer\UserToIdTransformer;
+use AppBundle\Form\DataTransformer\CartToIdTransformer;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserSelectorType extends AbstractType
+class CartSelectorType extends AbstractType
 {
     /**
-     * @var UserManager
+     * @var CartManager
      */
-    public $userManager;
+    public $cartManager;
 
     /**
      * @param ContainerInterface $container
      */
     public function __construct(ContainerInterface $container)
     {
-        $this->userManager = $container->get('app.manager.user');
+        $this->cartManager = $container->get('app.manager.cart');
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addModelTransformer(new UserToIdTransformer($this->userManager));
+        $builder->addModelTransformer(new CartToIdTransformer($this->cartManager));
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             [
-                'invalid_message' => 'validation.field.invalid.user',
+                'invalid_message' => 'validation.field.invalid.cart',
             ]
         );
     }

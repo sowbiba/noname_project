@@ -73,9 +73,9 @@ class DeliveryType
     private $delay;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="price", type="integer")
+     * @ORM\Column(name="price", type="decimal", precision=20, scale=9)
      *
      * @Serializer\Expose
      * @Serializer\Groups({
@@ -163,7 +163,7 @@ class DeliveryType
     /**
      * Set price
      *
-     * @param integer $price
+     * @param float $price
      *
      * @return Product
      */
@@ -177,7 +177,7 @@ class DeliveryType
     /**
      * Get price
      *
-     * @return int
+     * @return float
      */
     public function getPrice()
     {

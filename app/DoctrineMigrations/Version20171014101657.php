@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS command (
   user_id INT DEFAULT NULL,
   delivery_type_id INT DEFAULT NULL,
   ordered_at DATETIME NOT NULL,
-  total INT NOT NULL,
+  total DECIMAL(20,9) NOT NULL,
   delivery_status VARCHAR(255) NOT NULL,
   facture_file VARCHAR(255) NOT NULL,
   created_at DATETIME NOT NULL,

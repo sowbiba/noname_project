@@ -18,9 +18,9 @@ class CommandType extends AbstractType
     {
         $builder
             ->add('user',           'AppBundle\Form\SelectorType\UserSelectorType')
-            ->add('total',          'Symfony\Component\Form\Extension\Core\Type\IntegerType')
+            ->add('total',          'Symfony\Component\Form\Extension\Core\Type\MoneyType')
             ->add('deliveryType',   'AppBundle\Form\SelectorType\DeliveryTypeSelectorType')
-            ->add('deliveryStatus', 'Symfony\Component\Form\Extension\Core\Type\IntegerType')
+            ->add('deliveryStatus', 'Symfony\Component\Form\Extension\Core\Type\TextType')
             ->add('factureFile',    'Symfony\Component\Form\Extension\Core\Type\TextType')
             ->add('deliveredAt',    'Symfony\Component\Form\Extension\Core\Type\DateType',
                 [

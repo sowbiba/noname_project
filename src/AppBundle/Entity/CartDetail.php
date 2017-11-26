@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * CartDetail
@@ -34,6 +35,12 @@ class CartDetail
      *
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="cartDetails")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     *
+     * @Serializer\Expose
+     * @Serializer\Groups({
+     *      "carts_read",
+     *      "carts_update",
+     * })
      */
     private $product;
 
@@ -41,6 +48,12 @@ class CartDetail
      * @var int
      *
      * @ORM\Column(name="quantity", type="integer")
+     *
+     * @Serializer\Expose
+     * @Serializer\Groups({
+     *      "carts_read",
+     *      "carts_update",
+     * })
      */
     private $quantity;
 

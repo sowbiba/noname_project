@@ -38,6 +38,10 @@ class User implements UserInterface
      *      "commands_create",
      *      "commands_read",
      *      "commands_update",
+     *      "carts_list",
+     *      "carts_create",
+     *      "carts_read",
+     *      "carts_update",
      * })
      */
     private $id;
@@ -58,6 +62,10 @@ class User implements UserInterface
      *      "commands_create",
      *      "commands_read",
      *      "commands_update",
+     *      "carts_list",
+     *      "carts_create",
+     *      "carts_read",
+     *      "carts_update",
      * })
      */
     private $firstname;
@@ -78,6 +86,10 @@ class User implements UserInterface
      *      "commands_create",
      *      "commands_read",
      *      "commands_update",
+     *      "carts_list",
+     *      "carts_create",
+     *      "carts_read",
+     *      "carts_update",
      * })
      */
     private $lastname;

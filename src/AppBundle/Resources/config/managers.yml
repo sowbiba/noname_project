@@ -54,3 +54,19 @@ services:
             - '@service_container'
             - command
         shared: false
+
+    app.manager.cart:
+        class: AppBundle\Manager\CartManager
+        factory: ['@app.manager.factory', get]
+        arguments:
+            - '@service_container'
+            - cart
+        shared: false
+
+    app.manager.cart_detail:
+        class: AppBundle\Manager\CartDetailManager
+        factory: ['@app.manager.factory', get]
+        arguments:
+            - '@service_container'
+            - cart_detail
+        shared: false
