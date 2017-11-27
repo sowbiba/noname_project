@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\User;
 use AppBundle\Exception\NotValidPasswordException;
@@ -83,8 +83,7 @@ class AuthenticationController extends FOSRestController
             $context = new Context();
             $context->setGroups(['Default', 'authentication']);
 
-            return $this
-                        ->view($user, Response::HTTP_OK)
+            return $this->view($user, Response::HTTP_OK)
                         ->setContext($context);
         } catch (NotValidPasswordException $e) {
             return new JsonResponse('', Response::HTTP_UNAUTHORIZED);

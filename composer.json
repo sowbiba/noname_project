@@ -21,9 +21,16 @@
     },
     "require": {
         "php": ">=5.5.9",
+        "csa/guzzle-bundle": "1.3.8",
         "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/doctrine-migrations-bundle": "~1.2",
         "doctrine/orm": "^2.5",
+        "friendsofsymfony/rest-bundle": "@stable",
         "incenteev/composer-parameter-handler": "^2.0",
+        "knplabs/knp-menu": "~2.0",
+        "knplabs/knp-menu-bundle": "dev-master",
+        "knplabs/knp-paginator-bundle": "dev-master",
+        "nelmio/api-doc-bundle": "^2.9@dev",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
         "symfony/monolog-bundle": "^3.1.0",
@@ -31,10 +38,7 @@
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.3.*",
         "twig/twig": "^1.0||^2.0",
-        "doctrine/doctrine-migrations-bundle": "~1.2",
-        "willdurand/hateoas-bundle": "~1.3",
-        "nelmio/api-doc-bundle": "^2.9@dev",
-        "friendsofsymfony/rest-bundle": "@stable"
+        "willdurand/hateoas-bundle": "~1.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

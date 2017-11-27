@@ -1,0 +1,48 @@
+{% extends "::base.html.twig" %}
+
+{% trans_default_domain translation_domain %}
+
+{% block head_style %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="/css/layout.css" type="text/css">
+{% endblock %}
+
+{% block foot_script %}
+    {{ parent() }}
+{% endblock %}
+
+{% block navbar %}
+    <div role="navigation" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse" >
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="{{ path('back_homepage') }}">
+                    <img class="img-responsive tip-bottom" src="/bundles/pfdback/images/logo-header.png" alt="{% trans %} Back title {% endtrans %}" title="Backend Broadcast" />
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock navbar %}
+
+{% block breadcrumb '' %}
+
+{% block content %}
+    <section class="content col-xs-12">
+        <div class="row">
+            {% block content_menu '' %}
+
+            {% block content_body %}{% endblock content_body %}
+        </div>
+    </section>
+{% endblock content %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock footer %}

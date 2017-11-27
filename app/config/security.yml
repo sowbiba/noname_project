@@ -18,6 +18,10 @@ security:
         database_token_provider:
             id: app.security.user_provider.database_token
 
+        # back
+        api_user:
+           id: app.security.user.provider
+
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -41,8 +45,26 @@ security:
                 - app.security.token_authenticator
            provider: app_chain_provider
 
+        back_secured_area:
+            pattern: ^/back
+            context: user
+            provider: api_user
+            logout:
+                path: /back/logout
+                target: /back/login
+            simple-form:
+                login_path: /back/login
+                check_path: /back/login_check
+                authenticator: app.security.user.authenticator
+                default_target_path: /back
+                #csrf_provider: security.csrf.token_manager
+                failure_path: /back/login
+                failure_forward: true
+                failure_handler: user.security.auth_failure_handler
+
     access_control:
         - { path: ^/api, roles: ADMIN }
+        - { path: ^/back, roles: BACK }
 
     # activate different ways to authenticate
 

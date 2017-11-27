@@ -22,6 +22,8 @@ parameters:
     app_logs_filename:  app_logs
     app_logs_max_files: 10
 
+    api_base_url: 'http://noname.dev'
+
     tokens:
         - "abcd"
         - "efgh"

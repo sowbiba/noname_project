@@ -372,7 +372,7 @@ class ExceptionListener
                     'type' => $type,
                     'status_code' => $statusCode,
                     'referer' => $request->headers->get('referer'),
-                    'user' => $user->getId(),
+                    'user' => (null !== $user) ? $user->getId() : 'NULL',
                     'error_message' => $errorMessages,
                     'extra' => $extra,
                 ]

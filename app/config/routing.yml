@@ -1,6 +1,17 @@
 api:
-    resource: "@AppBundle/Resources/config/routing.yml"
+    resource: "@AppBundle/Resources/config/routing_api.yml"
     prefix:   "api/"
+
+back:
+    resource: "@AppBundle/Controller/Back"
+    prefix:   /back
+
+back_homepage:
+    path: /back
+    defaults:
+      _controller: FrameworkBundle:Redirect:redirect
+      route: back_users_list
+      permanent: true
 
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"

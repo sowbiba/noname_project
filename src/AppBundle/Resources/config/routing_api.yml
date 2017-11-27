@@ -1,6 +1,6 @@
 authentication:
     type: rest
-    resource: AppBundle\Controller\AuthenticationController
+    resource: AppBundle\Controller\Api\AuthenticationController
 
 delivery_type:
     type: rest

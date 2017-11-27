@@ -40,3 +40,20 @@ services:
         public: true
         tags:
             - { name: security.voter }
+
+    app.security.user.provider:
+        class: AppBundle\Security\UserProvider\ApiUserProvider
+        arguments:
+            - '@api_connector.api'
+
+    app.security.user.authenticator:
+        class: AppBundle\Security\ApiAuthenticator
+
+    user.security.auth_failure_handler:
+        class: AppBundle\Security\Handler\AuthenticationFailureHandler
+        arguments:
+            - '@http_kernel'
+            - '@security.http_utils'
+            - '@app.logger'
+            - []
+            - '@logger'
