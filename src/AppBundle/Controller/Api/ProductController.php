@@ -3,7 +3,6 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Product;
-use AppBundle\Entity\User;
 use AppBundle\Serializer\Exclusion\FieldsListExclusionStrategy;
 use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\Context\Context;

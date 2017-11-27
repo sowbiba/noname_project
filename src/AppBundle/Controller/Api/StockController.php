@@ -41,7 +41,7 @@ class StockController extends ApiController
      *     },
      * )
      *
-     * @Rest\Get("/product/{product_id}/product")
+     * @Rest\Get("/product/{product_id}/stock")
      * @ParamConverter("product", class="AppBundle:Product", options={"id"="product_id"})
      *
      * @param Product $product

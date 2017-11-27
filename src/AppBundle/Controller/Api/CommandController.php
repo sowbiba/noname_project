@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Api;
 
+use AppBundle\Entity\Cart;
 use AppBundle\Entity\Command;
 use AppBundle\Entity\User;
 use AppBundle\Serializer\Exclusion\FieldsListExclusionStrategy;
@@ -14,6 +15,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
  * CommandController is a RESTful controller managing commands CRUD and listing.
@@ -182,6 +184,68 @@ class CommandController extends ApiController
     public function createAction(Request $request)
     {
         $command = $this->get('app.manager.command')->createAndSave($request->request->all());
+
+        $context = new Context();
+        $context->setGroups(['Default', 'commands_create']);
+
+        return $this
+            ->view($command, Response::HTTP_CREATED)
+            ->setContext($context);
+    }
+
+    /**
+     * @ApiDoc(
+     *     section="Command",
+     *     description="Create new command from user's cart",
+     *     statusCodes={
+     *         201="Created",
+     *         400="Bad request",
+     *         403="Forbidden",
+     *         422="Validation failed",
+     *     },
+     *     requirements={
+     *         {
+     *             "name"="user_id",
+     *             "dataType"="integer",
+     *             "description"="The user which cart will be transformed. Up to 11 digits.",
+     *             "required"=false,
+     *         },
+     *     },
+     *     parameters={
+     *         {
+     *             "name"="deliveryType",
+     *             "dataType"="integer",
+     *             "description"="The command delivery type ID. Up to 11 digits.",
+     *             "required"=false,
+     *         },
+     *     },
+     * )
+     *
+     * @Rest\Patch("/commands/users/{user_id}/create-from-cart")
+     * @ParamConverter("user", class="AppBundle:User", options={"id"="user_id"})
+     *
+     * @param Request $request
+     *
+     * @Security("is_granted('create')")
+     *
+     * @throws EntityNotFoundException
+     *
+     * @return View
+     */
+    public function createFromCartAction(Request $request, User $user)
+    {
+        $cartManager = $this->get('app.manager.cart');
+
+        $cart = $cartManager->findOneBy(array('user' => $user->getId()));
+
+        /**
+         * @var Cart $cart
+         */
+        if (null === $cart) {
+            throw new EntityNotFoundException("Cart doesn't exist");
+        }
+
+        $command = $this->get('app.manager.command')->createFromCart($cart, $request->request->all());
 
         $context = new Context();
         $context->setGroups(['Default', 'commands_create']);

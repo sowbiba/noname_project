@@ -13,11 +13,21 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="command")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CommandRepository")
  *
- * @Serializer\AccessorOrder("custom", custom = {"id", "user", "orderedAt", "total", "deliveryType", "deliveryStatus", "factureFile", "createdAt", "createdBy", "updatedAt", "updatedBy", "commandDetails"})
+ * @Serializer\AccessorOrder("custom", custom = {"id", "user", "orderedAt", "total", "deliveryType", "deliveryStatus", "factureFile", "commandDetails","createdAt", "createdBy", "updatedAt", "updatedBy"})
  * @Serializer\ExclusionPolicy("all")
  */
 class Command
 {
+    const DELIVERY_STATUS_WAITING       = 'WAITING';
+    const DELIVERY_STATUS_IN_PROGRESS   = 'IN_PROGRESS';
+    const DELIVERY_STATUS_DONE          = 'DONE';
+
+    static $allowedDeliveryStatus = array(
+        self::DELIVERY_STATUS_WAITING,
+        self::DELIVERY_STATUS_IN_PROGRESS,
+        self::DELIVERY_STATUS_DONE,
+    );
+
     /**
      * @var int
      *
@@ -165,7 +175,7 @@ class Command
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="delivered_at", type="datetime")
+     * @ORM\Column(name="delivered_at", type="datetime", nullable=true)
      *
      * @Serializer\Expose
      * @Serializer\Groups({
@@ -214,7 +224,7 @@ class Command
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="CommandDetail", mappedBy="command")
+     * @ORM\OneToMany(targetEntity="CommandDetail", mappedBy="command", cascade={"persist"})
      *
      * @Serializer\Expose
      * @Serializer\Groups({
@@ -228,6 +238,7 @@ class Command
 
     public function __construct()
     {
+        $this->setDeliveryStatus(self::DELIVERY_STATUS_WAITING);
         $this->commandDetails = new ArrayCollection();
     }
 
@@ -511,6 +522,20 @@ class Command
     public function getCommandDetails()
     {
         return $this->commandDetails;
+    }
+
+    /**
+     * @param CommandDetail $commandDetail
+     *
+     * @return Command
+     */
+    public function addCommandDetail(CommandDetail $commandDetail)
+    {
+        if (!$this->commandDetails->contains($commandDetail)) {
+            $this->commandDetails->add($commandDetail);
+        }
+
+        return $this;
     }
 }
 

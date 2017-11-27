@@ -25,7 +25,7 @@ class CommandDetail
      * @var Command
      *
      * @ORM\ManyToOne(targetEntity="Command", inversedBy="commandDetails")
-     * @ORM\JoinColumn(name="command_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="command_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $command;
 

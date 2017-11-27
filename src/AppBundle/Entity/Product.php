@@ -31,6 +31,8 @@ class Product
      *      "products_create",
      *      "products_read",
      *      "products_update",
+     *      "carts_read",
+     *      "carts_update",
      * })
      */
     private $id;
@@ -46,6 +48,8 @@ class Product
      *      "products_create",
      *      "products_read",
      *      "products_update",
+     *      "carts_read",
+     *      "carts_update",
      * })
      */
     private $name;
@@ -76,6 +80,8 @@ class Product
      *      "products_create",
      *      "products_read",
      *      "products_update",
+     *      "carts_read",
+     *      "carts_update",
      * })
      */
     private $price;

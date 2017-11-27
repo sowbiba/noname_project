@@ -13,7 +13,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="cart")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CartRepository")
  *
- * @Serializer\AccessorOrder("custom", custom = {"id", "user", "createdAt", "updatedAt", "cartDetails"})
+ * @Serializer\AccessorOrder("custom", custom = {"id", "user", "cartDetails", "createdAt", "updatedAt"})
  * @Serializer\ExclusionPolicy("all")
  */
 class Cart

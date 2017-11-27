@@ -10,6 +10,9 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @ORM\Table(name="cart_detail")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CartDetailRepository")
+ *
+ * @Serializer\AccessorOrder("custom", custom = {"product", "quantity"})
+ * @Serializer\ExclusionPolicy("all")
  */
 class CartDetail
 {
@@ -26,7 +29,7 @@ class CartDetail
      * @var Cart
      *
      * @ORM\ManyToOne(targetEntity="Cart", inversedBy="cartDetails")
-     * @ORM\JoinColumn(name="cart_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="cart_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $cart;
 

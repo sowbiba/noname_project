@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS command (
   delivery_status VARCHAR(255) NOT NULL,
   facture_file VARCHAR(255) NOT NULL,
   created_at DATETIME NOT NULL,
-  updated_at DATETIME DEFAULT NULL,
+  updated_at DATETIME NOT NULL,
   delivered_at DATETIME DEFAULT NULL,
   created_by VARCHAR(255) NOT NULL,
   updated_by VARCHAR(255) DEFAULT NULL,
