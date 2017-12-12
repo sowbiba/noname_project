@@ -1,4 +1,0 @@
-services:
-  AppBundle\Form\Type\UserType:
-      arguments: ['@api_connector.api']
-      tags: [form.type]

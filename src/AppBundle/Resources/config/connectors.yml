@@ -1,6 +1,0 @@
-services:
-  api_connector.api:
-      class: AppBundle\Connector\ApiConnector
-      arguments:
-          - '@csa_guzzle.client.api'
-          - '@service_container'
