@@ -1,0 +1,30 @@
+list: "Liste des utilisateurs"
+edit: "Modification d'utilisateur"
+delete: "Supprimer l'utilisateur"
+ADMIN: Super Administrateur
+BACK: Administrateur du Backoffice
+MEMBER: Utilisateur
+
+form:
+  label:
+    lastname: Nom
+    firstname: Prénom
+    email: Email
+    username: Identifiant
+    password: Mot de passe
+    birthdate: Date de naissance
+    phone: Téléphone
+    address: Adresse
+    role: Rôle
+    active: Actif
+
+  legend:
+    login: Informations d'identification
+    setting: Paramètrage
+    profile: Profil
+
+user:
+  headers:
+    name: Nom
+    email: Email
+    role: Rôle

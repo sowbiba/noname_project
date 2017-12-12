@@ -1,0 +1,14 @@
+back:
+    resource: "@AppBundle/Controller/Back"
+    prefix:   /back
+
+back_login_check:
+    path: /back/login_check
+
+back_homepage:
+    path: /back
+    defaults:
+      _controller: FrameworkBundle:Redirect:redirect
+      route: back_users_list
+      permanent: true
+
