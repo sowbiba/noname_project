@@ -42,7 +42,7 @@ class User implements UserInterface, EquatableInterface
     /**
      * @var string
      */
-    private $firstName;
+    private $firstname;
 
     /**
      * @var string
@@ -62,11 +62,11 @@ class User implements UserInterface, EquatableInterface
     public static function fromApiResponse(array $data)
     {
         return new self([
-            'email' => isset($data['_embedded']['profile']['email']) ? $data['_embedded']['profile']['email'] : null,
-            'firstName' => isset($data['_embedded']['profile']['first_name']) ? $data['_embedded']['profile']['first_name'] : null,
+            'email' => isset($data['email']) ? $data['email'] : null,
+            'firstname' => isset($data['firstname']) ? $data['firstname'] : null,
             'id' => $data['id'],
-            'name' => isset($data['_embedded']['profile']['name']) ? $data['_embedded']['profile']['name'] : null,
-            'roles' => isset($data['_embedded']['roles']) ? $data['_embedded']['roles'] : null,
+            'name' => isset($data['lastname']) ? $data['lastname'] : null,
+            'roles' => isset($data['role']) ? array($data['role']) : null,
             'token' => $data['token'],
             'username' => $data['username'],
         ]);
@@ -102,14 +102,14 @@ class User implements UserInterface, EquatableInterface
         return $this->email;
     }
 
-    public function setFirstName($firstName)
+    public function setFirstname($firstname)
     {
-        $this->firstName = $firstName;
+        $this->firstname = $firstname;
     }
 
-    public function getFirstName()
+    public function getFirstname()
     {
-        return $this->firstName;
+        return $this->firstname;
     }
 
     public function setName($name)

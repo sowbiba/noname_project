@@ -10,14 +10,6 @@ security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        app_chain_provider:
-            chain:
-                providers: [config_token_provider, database_token_provider]
-        config_token_provider:
-            id: app.security.user_provider.config_token
-        database_token_provider:
-            id: app.security.user_provider.database_token
-
         # back
         api_user:
            id: app.security.user.provider
@@ -28,22 +20,13 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        login_firewall:
+            pattern:   ^(/back/login)$
+            anonymous: ~
+
         login:
-            pattern:  ^/(login-check|api/login-check)
+            pattern:  ^/(back/login-check)
             security: false
-
-        doc:
-            pattern:  ^/api/doc
-            security: false
-
-        api:
-           pattern: ^/api
-           entry_point: app.security.entry_point
-           stateless: true
-           guard:
-              authenticators:
-                - app.security.token_authenticator
-           provider: app_chain_provider
 
         back_secured_area:
             pattern: ^/back
@@ -63,8 +46,8 @@ security:
                 failure_handler: user.security.auth_failure_handler
 
     access_control:
-        - { path: ^/api, roles: ADMIN }
-        - { path: ^/back, roles: BACK }
+        - { path: ^(.*)/login,  roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/back, roles: ROLE_BACK }
 
     # activate different ways to authenticate
 

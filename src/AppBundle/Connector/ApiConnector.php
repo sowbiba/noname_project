@@ -67,28 +67,7 @@ class ApiConnector
 
     private function requestApi($httpMethod, $url, array $options = [])
     {
-        $environment = $this->container->get('kernel')->getEnvironment();
-
-        $url = ltrim($url, '/');
-
-        $url = str_replace('app.php/', '', $url);
-        $url = str_replace('app_dev.php/', '', $url);
-        $url = str_replace('app_test.php/', '', $url);
-
-        switch ($environment) {
-            case 'prod':
-                $url = "/$url";
-                break;
-            case 'dev':
-                $url = "/app_dev.php/$url";
-                break;
-            case 'test':
-                $url = "/app_test.php/$url";
-                break;
-        }
-
-        var_dump($url);die();
-        return $this->client->send($this->client->createRequest($httpMethod, $url, $this->getOptions($options)));
+        return $this->client->send($this->client->createRequest($httpMethod, ltrim($url, '/'), $this->getOptions($options)));
     }
 
     /**

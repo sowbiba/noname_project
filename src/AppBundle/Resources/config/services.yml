@@ -1,8 +1,5 @@
 imports:
   - { resource: "connectors.yml" }
-  - { resource: "factories.yml" }
-  - { resource: "managers.yml" }
-  - { resource: "form_type_selectors.yml" }
-  - { resource: "listeners.yml" }
   - { resource: "loggers.yml" }
   - { resource: "security.yml" }
+  - { resource: "back_forms.yml" }

@@ -1,0 +1,75 @@
+{% extends "AppBundle:Back:layout.html.twig" %}
+
+{% trans_default_domain 'back_users' %}
+
+{% block container_class %}{{ parent() }} list_users {% endblock container_class %}
+
+{% block headline %}{{ 'list'|trans }}{% endblock headline %}
+
+{% block content_body %}
+    <p class="h4">{{ 'results'|transchoice(users.getTotalItemCount, {}, 'back') }}</p>
+
+    {% if (users|length > 0) %}
+        <table class="table table-condensed table-bordered table-back">
+            <thead>
+            <tr>
+                <th>{{ 'user.headers.name'|trans }}</th>
+                <th>{{ 'user.headers.email'|trans }}</th>
+                <th>{{ 'user.headers.role'|trans }}</th>
+                <th class="actions form-flow-actions">{{ 'actions'|trans({}, 'back') }}</th>
+            </tr>
+            </thead>
+            <tbody id="user-list">
+            {% for user in users %}
+                <tr id="user-id-{{ user.id }}" data-user-id="{{ user.id }}">
+                    <td class="vertical-align-middle">
+                        <a href="{{ url('back_user_update', {'userId': user.id}) }}">{{ user.firstname ~ ' ' ~ user.lastname }}</a>
+                    </td>
+                    <td class="vertical-align-middle">
+                        {{ user.email }}
+                    </td>
+                    <td class="vertical-align-middle">
+                        {{ user.role.name|trans }}
+                    </td>
+                    <td class="form-flow-actions vertical-align-middle actions">
+                        <a class="tip-top" title="{{ 'delete'|trans }}" href="#" data-href="#" data-toggle="modal" data-target="#user-confirm-delete">
+                            <i class="fa fa-trash-o fa-1-5x text-danger"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div id="user-confirm-delete" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="h4 modal-title">
+                            {{ 'sure'|trans({}, 'back') }}
+                        </p>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ 'confirm_delete'|trans({}, 'user')|raw }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+                            <i class="fa fa-times-circle"></i>
+                            {{ 'cancel'|trans({}, 'back') }}
+                        </button>
+                        <a class="btn btn-danger" id="modal-delete-display-set-button">
+                            <i class="fa fa-trash"></i>
+                            {{ 'delete_modal.confirm'|trans({}, 'user') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            {{ knp_pagination_render(users) }}
+        </div>
+    {% endif %}
+{% endblock content_body %}
+
+{% block sidebarWrapper '' %}

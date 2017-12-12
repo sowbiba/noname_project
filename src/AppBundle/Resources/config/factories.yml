@@ -1,3 +1,0 @@
-services:
-    app.manager.factory:
-      class: AppBundle\Factory\ManagerFactory

@@ -14,6 +14,7 @@ use AppBundle\Utils\HashGenerator;
 use AppBundle\Utils\Inflector;
 use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\View\View;
+use JMS\Serializer\SerializationContext;
 use Monolog\Logger;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Form;
@@ -125,12 +126,11 @@ class ExceptionListener
 
         $this->log($exception, Logger::WARNING, 'exception', $logRef, $statusCode, $errorMessage->toArray());
 
-        $context = new Context();
-        $context->setSerializeNull(false);
-
         return View::create($errorMessage, $statusCode)
             ->setFormat('json')
-            ->setContext($context);
+            ->setSerializationContext(
+                SerializationContext::create()->setSerializeNull(false)
+            );
     }
 
     private function handleAccessDeniedHttpException(AccessDeniedHttpException $exception, $logRef)
@@ -144,12 +144,11 @@ class ExceptionListener
 
         $this->log($exception, Logger::WARNING, 'exception', $logRef, $statusCode, $errorMessage->toArray());
 
-        $context = new Context();
-        $context->setSerializeNull(false);
-
         return View::create($errorMessage, $statusCode)
             ->setFormat('json')
-            ->setContext($context);
+            ->setSerializationContext(
+                SerializationContext::create()->setSerializeNull(false)
+            );
     }
 
     private function handleInsufficientAuthenticationException(InsufficientAuthenticationException $exception, $logRef)
@@ -162,12 +161,11 @@ class ExceptionListener
 
         $this->log($exception, Logger::WARNING, 'exception', $logRef, $statusCode, $errorMessage->toArray());
 
-        $context = new Context();
-        $context->setSerializeNull(false);
-
         return View::create($errorMessage, $statusCode)
             ->setFormat('json')
-            ->setContext($context);
+            ->setSerializationContext(
+                SerializationContext::create()->setSerializeNull(false)
+            );
     }
 
     /**
@@ -196,12 +194,11 @@ class ExceptionListener
 
         $this->log($exception, Logger::WARNING, $statusText, $logRef, $statusCode, $errorMessage->toArray());
 
-        $context = new Context();
-        $context->setSerializeNull(false);
-
         return View::create($errorMessage, $statusCode)
             ->setFormat('json')
-            ->setContext($context);
+            ->setSerializationContext(
+                SerializationContext::create()->setSerializeNull(false)
+            );
     }
 
     /**
@@ -270,12 +267,11 @@ class ExceptionListener
 
         $this->log($exception, Logger::INFO, 'validation', $logRef, $statusCode, $errorMessage->toArray(), $extra);
 
-        $context = new Context();
-        $context->setSerializeNull(false);
-
         return View::create($errorMessage, $statusCode)
             ->setFormat('json')
-            ->setContext($context);
+            ->setSerializationContext(
+                SerializationContext::create()->setSerializeNull(false)
+            );
     }
 
     /**
@@ -364,6 +360,13 @@ class ExceptionListener
             'route_name' => $request->get('_route'),
         ]);
 
+        $userId = "NULL";
+        if (is_object($user)) {
+            $userId = $user->getId();
+        } elseif (is_string($user)) {
+            $userId = $user;
+        }
+
         $this->container->get('app.logger')->addRecord(
             $recordType,
             json_encode(
@@ -372,7 +375,7 @@ class ExceptionListener
                     'type' => $type,
                     'status_code' => $statusCode,
                     'referer' => $request->headers->get('referer'),
-                    'user' => (null !== $user) ? $user->getId() : 'NULL',
+                    'user' => $userId,
                     'error_message' => $errorMessages,
                     'extra' => $extra,
                 ]

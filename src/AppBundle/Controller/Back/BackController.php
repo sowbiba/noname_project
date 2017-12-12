@@ -3,10 +3,12 @@
 namespace AppBundle\Controller\Back;
 
 use AppBundle\Exception\ApiRequestException;
-use FOS\RestBundle\Controller\FOSRestController;
 use GuzzleHttp\Exception\RequestException;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Response;
 
-abstract class BackController extends FOSRestController
+abstract class BackController extends Controller
 {
     /**
      * @return mixed
@@ -30,7 +32,6 @@ abstract class BackController extends FOSRestController
      */
     public function requestApi($httpMethod, $url, array $options = [])
     {
-        var_dump('ici');die();
         return $this->get('api_connector.api')->request($httpMethod, $url, $options);
     }
 
@@ -65,5 +66,69 @@ abstract class BackController extends FOSRestController
             ++$i;
         }
         return $array->toArray();
+    }
+
+    /**
+     * Interpolates the given message.
+     *
+     * Parameters are replaced in the message in the same manner that
+     * {@link strtr()} uses.
+     *
+     * Example usage:
+     *
+     *     $translator = new DefaultTranslator();
+     *
+     *     echo $translator->trans(
+     *         'This is a {{ var }}.',
+     *         array('{{ var }}' => 'donkey')
+     *     );
+     *
+     *     // -> This is a donkey.
+     *
+     * @param string $id         The message id
+     * @param array  $parameters An array of parameters for the message
+     * @param string $domain     Ignored
+     * @param string $locale     Ignored
+     *
+     * @return string The interpolated string
+     */
+    protected function translate($id, array $parameters = [], $domain = null, $locale = null)
+    {
+        return $this->get('translator')->trans($id, $parameters, $domain, $locale);
+    }
+
+    /**
+     * @param RequestException $exception
+     * @param Form             $form
+     * @param string           $translateDomain
+     */
+    protected function handleFormErrors(RequestException $exception, Form $form, $translateDomain)
+    {
+        $response = $exception->getResponse();
+
+        if (Response::HTTP_UNPROCESSABLE_ENTITY === $response->getStatusCode()) {
+            $this->addFlash('form-error', $this->renderFormErrors($response->json(), $translateDomain));
+        } else {
+            throw $this->createApiRequestException($exception);
+        }
+    }
+
+    /**
+     * @param array  $errors
+     * @param string $translateDomain
+     *
+     * @return string
+     *
+     * @throws \Exception
+     * @throws \Twig_Error
+     */
+    protected function renderFormErrors(array $errors, $translateDomain)
+    {
+        return $this->render('AppBundle:Templating:form-errors.html.twig',
+            [
+                'errors' => $errors,
+                'translate_domain' => $translateDomain,
+            ]
+        );
     }
 }
