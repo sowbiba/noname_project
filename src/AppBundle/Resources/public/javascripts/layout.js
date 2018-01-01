@@ -292,7 +292,7 @@ function initPagination()
 function initDatepicker()
 {
     $('.date_picker').each(function() {
-        var startDate = '-3d';
+        var startDate = 'Beginning of time';
 
         if ($(this).data('start-date')) {
             startDate = $(this).data('start-date');
@@ -300,7 +300,8 @@ function initDatepicker()
         $(this).datepicker({
             format: 'dd/mm/yyyy',
             language: 'fr-FR',
-            startDate: startDate
+            //startDate: startDate,
+            todayHighlight: true
         });
     });
 }

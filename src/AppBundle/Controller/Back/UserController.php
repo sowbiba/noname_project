@@ -27,7 +27,7 @@ class UserController extends BackController
     public function listAction(Request $request)
     {
         $page = $request->query->get('page', 1);
-        $limit = 20;
+        $limit = 5;
         $query = [
 //            'orderBy' => 'id desc',
             'limit' => $limit,

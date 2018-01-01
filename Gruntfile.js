@@ -242,15 +242,15 @@ module.exports = function(grunt) {
         shell: {
             bazingaJsTranslation: {
                 command: [
-                    'php app/console bazinga:js-translation:dump',
-                    'php app/console assets:install',
-                    'php app/console assets:install -e=prod'
+                    'php bin/console bazinga:js-translation:dump',
+                    'php bin/console assets:install',
+                    'php bin/console assets:install -e=prod'
                 ].join(';')
             },
             assets: {
                 command: [
-                    'php app/console assets:install',
-                    'php app/console assets:install -e=prod'
+                    'php bin/console assets:install',
+                    'php bin/console assets:install -e=prod'
                 ].join(';')
             }
         },

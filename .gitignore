@@ -27,8 +27,16 @@
 !bin/symfony_requirements
 
 # Assets and user uploads
+/.tmp/
+/web/assets/
 /web/bundles/
-/web/uploads/
+/web/uploads/*
+/web/js/
+/web/css/
+/web/fonts/
+/web/img/
+/web/assetic/
+/web/import
 
 # PHPUnit
 /app/phpunit.xml
@@ -51,3 +59,5 @@ _.idea
 _.idea/*
 .tmp
 .tmp/*
+
+app/Resources/lib/*
