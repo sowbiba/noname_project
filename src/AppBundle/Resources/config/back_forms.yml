@@ -2,3 +2,7 @@ services:
   AppBundle\Form\Type\UserType:
       arguments: ['@api_connector.api']
       tags: [form.type]
+
+  AppBundle\Form\Type\UserFilterType:
+      arguments: ['@api_connector.api']
+      tags: [form.type]

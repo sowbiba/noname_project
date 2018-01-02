@@ -140,8 +140,24 @@ class UserType extends AbstractType
             )
         ;
 
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $data = $event->getData();
+            if (null !== $data) {
+                if (isset($data['role']['id'])) {
+                    $data['role'] = $data['role']['id'];
+                }
+            }
+
+            $event->setData($data);
+        });
+
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
+
+            if (isset($data['birthdate']) && !empty($data['birthdate']) && preg_match('/.*\-.*\-.*/', $data['birthdate'])) {
+                $birthdate = \DateTime::createFromFormat('Y-m-d', $data['birthdate']);
+                $data['birthdate'] = $birthdate->format('d/m/Y');
+            }
 
             foreach ($data as $key => $value) {
                 if (is_array($value)) {

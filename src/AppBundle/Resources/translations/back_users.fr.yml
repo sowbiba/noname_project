@@ -1,9 +1,39 @@
 list: "Liste des utilisateurs"
+create: "Création d'un nouvel utilisateur"
 edit: "Modification d'utilisateur"
 delete: "Supprimer l'utilisateur"
 ADMIN: Super Administrateur
 BACK: Administrateur du Backoffice
 MEMBER: Utilisateur
+
+buttons:
+  create: "Créer un nouvel utilisateur"
+
+tooltip:
+  create: "Créer un nouvel utilisateur"
+  show-hide: "Afficher/Masquer le panneau"
+
+
+message:
+  success:
+    update: "Vos modifications ont bien été enregistrées"
+    delete: "L'utilisateur a bie été supprimé"
+  error:
+    delete: "Une erreur s'est produite lors de la suppression de l'utilisateur"
+
+
+search:
+    title: "Zone de recherche :"
+    label:
+        active: "Utilisateur actif"
+        email: "Email"
+        firstname: "Prénom"
+        lastname: "Nom"
+        role: "Rôle"
+        username: "Identifiant"
+    submit: "Rechercher des utilisateurs"
+    reset: "Réinitialiser"
+
 
 form:
   label:
@@ -22,6 +52,14 @@ form:
     login: Informations d'identification
     setting: Paramètrage
     profile: Profil
+
+  empty_value:
+    active: "Choisissez une option"
+    role: "Tous les rôles"
+  choice:
+    active:
+        0: "Non"
+        1: "Oui"
 
 user:
   headers:

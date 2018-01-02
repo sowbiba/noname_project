@@ -14,6 +14,9 @@
         initFieldsEmpty();
         initDisableAfterClick();
         removeLoader();
+
+        window.app.tooltips.initToolTips();
+        window.app.tooltips.initPopovers();
     });
 })(jQuery);
 
@@ -201,7 +204,7 @@ function initConfirmForm()
             }
         });
 
-        if (pfd.functions.issetVariable(closed)) {
+        if (app.functions.issetVariable(closed)) {
             submit.on('click', function(event) {
                 event.preventDefault();
                 modals.modal('hide');
@@ -210,7 +213,7 @@ function initConfirmForm()
             });
         }
 
-        if (pfd.functions.issetVariable(disabled)) {
+        if (app.functions.issetVariable(disabled)) {
             if (!allElementsAreNotEmpty(inputs)) {
                 submit.attr('disabled', 'disabled');
             }

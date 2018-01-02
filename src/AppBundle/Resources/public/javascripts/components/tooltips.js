@@ -28,11 +28,11 @@
         $('.popover-left').popover(popoverLeftOptions);
     };
 
-    if (typeof window.pfd == "undefined") {
-        window.pfd = {};
+    if (typeof window.app == "undefined") {
+        window.app = {};
     }
 
 
-    window.pfd.tooltips = new tooltips();
+    window.app.tooltips = new tooltips();
 
 }(window));

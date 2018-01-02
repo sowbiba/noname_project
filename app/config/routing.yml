@@ -5,6 +5,9 @@ back:
 back_login_check:
     path: /back/login_check
 
+back_logout:
+    path: /back/logout
+
 back_homepage:
     path: /back
     defaults:

@@ -211,6 +211,10 @@ module.exports = function(grunt) {
                     'web/js/main.js': [
                         'src/AppBundle/Resources/public/javascripts/layout.js',
                         'src/AppBundle/Resources/public/javascripts/components/tooltips.js'
+                    ],
+                    // Back/User/list.html.twig
+                    'web/js/users.js': [
+                        'src/AppBundle/Resources/public/javascripts/pages/users.js'
                     ]
                 }
             }

@@ -23,6 +23,9 @@ none: "Aucun(e)"
 sure: "Êtes-vous sûr ?"
 cancel: "Annuler"
 export: "Exporter"
+confirm_delete: "La suppression est une opération irréversible"
+delete_modal:
+  confirm: "Oui je confirme la suppression"
 
 menu:
     management: Gestion des données
@@ -49,6 +52,13 @@ form:
     save: Enregistrer
     keep_my_version: Garder toutes mes modifications
     ignore_mine: Garder les données en base
+    empty_value:
+      active: "Choisissez une option"
+      role: "Tous les rôles"
+
+message:
+  success:
+    update: "Vos modifications ont bien été enregistrées"
 
 messages:
     save_error: Des erreurs sont survenues lors de la sauvegarde. Veuillez contacter un administrateur.
