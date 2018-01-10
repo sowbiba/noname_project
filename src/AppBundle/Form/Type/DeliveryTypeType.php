@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Form\DataTransformer\NullToEmptyTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,10 +17,39 @@ class DeliveryTypeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $nullToEmptyTransformer = new NullToEmptyTransformer();
+
         $builder
-            ->add('name', 'Symfony\Component\Form\Extension\Core\Type\TextType')
-            ->add('price', 'Symfony\Component\Form\Extension\Core\Type\IntegerType')
-            ->add('delay', 'Symfony\Component\Form\Extension\Core\Type\IntegerType')
+            ->add(
+                $builder
+                    ->create('name', 'Symfony\Component\Form\Extension\Core\Type\TextType',
+                        [
+                            'label' => 'form.label.name',
+                            'required' => true,
+                        ]
+                    )
+                    ->addModelTransformer($nullToEmptyTransformer)
+            )
+            ->add(
+                $builder
+                    ->create('delay', 'Symfony\Component\Form\Extension\Core\Type\IntegerType',
+                        [
+                            'label' => 'form.label.delay',
+                            'required' => true,
+                        ]
+                    )
+                    ->addModelTransformer($nullToEmptyTransformer)
+            )
+            ->add(
+                $builder
+                    ->create('price', 'Symfony\Component\Form\Extension\Core\Type\IntegerType',
+                        [
+                            'label' => 'form.label.price',
+                            'required' => true,
+                        ]
+                    )
+                    ->addModelTransformer($nullToEmptyTransformer)
+            )
         ;
     }
 
@@ -30,7 +60,7 @@ class DeliveryTypeType extends AbstractType
     {
         $resolver->setDefaults([
             'csrf_protection' => false,
-            'data_class' => 'AppBundle\Entity\DeliveryType',
+            'translation_domain' => 'back_delivery_types',
         ]);
     }
 }

@@ -1,0 +1,134 @@
+{% extends "AppBundle:Back:layout.html.twig" %}
+
+{% trans_default_domain 'back_delivery_types' %}
+
+{% set openFilters = app.request.query.has('filter_open') %}
+
+{% block container_class %}{{ parent() }} list_delivery_types {% endblock container_class %}
+
+{% block headline %}{{ 'list'|trans }}{% endblock headline %}
+
+{% block header_actions %}
+    <button
+            class="btn btn-{% if openFilters %}default{% else %}primary{% endif %} filter-button tip-bottom"
+            type="button"
+            title="{{ 'tooltip.show-hide'|trans }}"
+            >
+        <i class="fa fa-search"></i> {{ 'search'|trans({}, 'back') }}
+    </button>
+
+    <a
+            class="btn btn-primary tip-bottom"
+            href="{{ path('back_delivery_type_create') }}"
+            title="{{ 'tooltip.create'|trans }}"
+            >
+        <i class="fa fa-delivery-type"></i> {{ 'buttons.create'|trans }}
+    </a>
+{% endblock header_actions %}
+
+{% block content_body %}
+
+    <div class="list-filter well"{% if openFilters %} style="display: block;"{% else %} style="display: none;"{% endif %}>
+        <div class="pane-title">
+            {{ 'search.title'|trans }}
+        </div>
+
+        {{ form_start(filter_form, {'action': url('back_delivery_types_list'), 'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="row">
+            <div class="col-xs-4">
+                {{ form_row(filter_form.name) }}
+            </div>
+        </div>
+        <div class="margin-top-5 text-center">
+            <div class="btn-group">
+                <button
+                        type="submit"
+                        class="btn btn-primary no-float tip-bottom"
+                        title="{{ 'tooltip.search_submit'|trans }}"
+                        >
+                    <i class="glyphicon glyphicon-search"></i> {{ 'search.submit'|trans }}
+                </button>
+                <a
+                        class="btn btn-default no-float tip-bottom"
+                        href="{{ path('back_delivery_types_list') }}"
+                        title="{{ 'tooltip.search_reset'|trans }}"
+                        >
+                    <i class="fa fa-times"></i> {{ 'search.reset'|trans }}
+                </a>
+            </div>
+        </div>
+        {{ form_end(filter_form) }}
+    </div>
+
+    <p class="h4">{{ 'results'|transchoice(delivery_types.getTotalItemCount, {}, 'back') }}</p>
+
+    {% if (delivery_types|length > 0) %}
+        <table class="table table-condensed table-bordered table-back">
+            <thead>
+            <tr>
+                <th>{{ 'delivery_type.headers.name'|trans }}</th>
+                <th>{{ 'delivery_type.headers.delay'|trans }}</th>
+                <th>{{ 'delivery_type.headers.price'|trans }}</th>
+                <th class="actions form-flow-actions">{{ 'actions'|trans({}, 'back') }}</th>
+            </tr>
+            </thead>
+            <tbody id="delivery-type-list">
+            {% for delivery_type in delivery_types %}
+                <tr id="delivery-type-id-{{ delivery_type.id }}" data-delivery-type-id="{{ delivery_type.id }}">
+                    <td class="vertical-align-middle">
+                        <a href="{{ url('back_delivery_type_update', {'deliveryTypeId': delivery_type.id}) }}">{{ delivery_type.name }}</a>
+                    </td>
+                    <td class="vertical-align-middle">
+                        {{ delivery_type.delay }}
+                    </td>
+                    <td class="vertical-align-middle">
+                        {{ delivery_type.price }}
+                    </td>
+                    <td class="form-flow-actions vertical-align-middle actions">
+                        <a id="open-delivery-type-delete-modal" class="tip-top" title="{{ 'delete'|trans }}" href="#" data-href="{{ url('back_delivery_type_delete', {'deliveryTypeId': delivery_type.id}) }}" data-toggle="modal" data-target="#delivery-type-confirm-delete">
+                            <i class="fa fa-trash-o fa-1-5x text-danger"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div id="delivery-type-confirm-delete" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="h4 modal-title">
+                            {{ 'sure'|trans({}, 'back') }}
+                        </p>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ 'confirm_delete'|trans({}, 'back')|raw }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+                            <i class="fa fa-times-circle"></i>
+                            {{ 'cancel'|trans({}, 'back') }}
+                        </button>
+                        <a class="btn btn-danger" id="modal-delete-delivery-type-button">
+                            <i class="fa fa-trash"></i>
+                            {{ 'delete_modal.confirm'|trans({}, 'back') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            {{ knp_pagination_render(delivery_types) }}
+        </div>
+    {% endif %}
+{% endblock content_body %}
+
+{% block sidebarWrapper '' %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/delivery_types.js') }}"></script>
+{% endblock %}

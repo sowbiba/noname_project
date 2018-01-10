@@ -1,0 +1,43 @@
+list: "Liste des modes de livraison"
+create: "Création d'un nouvel mode de livraison"
+edit: "Modification du mode de livraison"
+delete: "Supprimer le mode de livraison"
+
+buttons:
+  create: "Créer un nouveau mode de livraison"
+
+tooltip:
+  create: "Créer un nouveau mode de livraison"
+  show-hide: "Afficher/Masquer le panneau"
+
+
+message:
+  success:
+    create: "Le mode de livraison a bien été créé"
+    update: "Vos modifications ont bien été enregistrées"
+    delete: "Le mode de livraison a bien été supprimé"
+  error:
+    delete: "Une erreur s'est produite lors de la suppression du mode de livraison"
+
+
+search:
+    title: "Zone de recherche :"
+    label:
+        name: "Nom"
+        delay: "Délai (en jours)"
+        price: "Prix"
+    submit: "Rechercher de modes de livraison"
+    reset: "Réinitialiser"
+
+
+form:
+  label:
+    name: Nom
+    delay: Délai (en jours)
+    price: Prix
+
+delivery_type:
+  headers:
+    name: Nom
+    delay: Délai (en jours)
+    price: Prix

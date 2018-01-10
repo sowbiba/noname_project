@@ -1,0 +1,51 @@
+{% extends "AppBundle:Back:layout.html.twig" %}
+
+{% trans_default_domain 'back_delivery_types' %}
+
+{% block container_class %}{{ parent() }} create_delivery_type {% endblock container_class %}
+
+{% block headline %}{{ 'create'|trans }}{% endblock headline %}
+
+{% block content_body %}
+    {{ form_start(form, {
+        'action': url('back_delivery_type_create'),
+        'attr': {
+            'novalidate': 'novalidate',
+            'data-form-notification-exit': true
+        }
+    }) }}
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="well">
+                <fieldset>
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.delay) }}
+                    {{ form_row(form.price) }}
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div class="margin-top-30">
+        <div class="well">
+            <button type="submit" name="create_and_edit" class="btn btn-primary" data-disable-after-click="true">
+                <i class="fa fa-save"></i>
+                {{ 'form.create_and_edit'|trans({}, 'back') }}
+            </button>
+            <button type="submit" name="create_and_list" class="btn btn-primary" data-disable-after-click="true">
+                <i class="fa fa-save"></i>
+                <i class="fa fa-list"></i>
+                {{ 'form.create_and_list'|trans({}, 'back') }}
+            </button>
+            {{ 'form.or'|trans({}, 'back') }}
+            <a href="{{ url('back_delivery_types_list') }}" class="btn btn-default">
+                <i class="fa fa-times-circle"></i>
+                {{ 'form.cancel'|trans({}, 'back') }}
+            </a>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock content_body %}
+
+{% block sidebarWrapper '' %}

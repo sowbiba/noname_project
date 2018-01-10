@@ -215,6 +215,10 @@ module.exports = function(grunt) {
                     // Back/User/list.html.twig
                     'web/js/users.js': [
                         'src/AppBundle/Resources/public/javascripts/pages/users.js'
+                    ],
+                    // Back/DeliveryType/list.html.twig
+                    'web/js/delivery_types.js': [
+                        'src/AppBundle/Resources/public/javascripts/pages/delivery_types.js'
                     ]
                 }
             }
