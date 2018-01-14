@@ -2,23 +2,39 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Connector\ApiConnector;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 /**
- * FormType used to manage the creation and the update of product types.
+ * Form type use to filter product_types on BACK.
  */
-class ProductTypeType extends AbstractType
+class ProductTypeFilterType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
+
         $builder
-            ->add('name', 'Symfony\Component\Form\Extension\Core\Type\TextType')
+            ->add('name', 'Symfony\Component\Form\Extension\Core\Type\TextType',
+                [
+                    'label' => 'search.label.name',
+                    'required' => false,
+                ]
+            )
         ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'back_product_type_filter';
     }
 
     /**

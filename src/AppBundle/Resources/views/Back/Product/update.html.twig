@@ -1,0 +1,61 @@
+{% extends "AppBundle:Back:layout.html.twig" %}
+
+{% trans_default_domain 'back_products' %}
+
+{% block container_class %}{{ parent() }} edit_product {% endblock container_class %}
+
+{% block headline %}{{ 'edit'|trans }}{% endblock headline %}
+
+{% block content_body %}
+    {{ form_start(form, {
+        'action': url('back_product_update', {'productId': app.request.get('productId')}),
+        'attr': {
+            'novalidate': 'novalidate',
+            'data-form-notification-exit': true
+        }
+    }) }}
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="well">
+                <fieldset>
+                    {{ form_row(form.productType) }}
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.price, {'money_pattern': '{{ widget }}' ~ currency}) }}
+                    <div class="form-group clearfix margin-top-20">
+                        <div class="col-xs-4 pull-left">
+                            <img src="{{ products_directory ~ product.photo_file }}" class="form-product-photo" />
+                        </div>
+                        <div class="col-xs-8 pull-right">
+                            <div>{{ form_label(form.photoFile) }}</div>
+                            <div>{{ form_widget(form.photoFile) }}</div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div class="margin-top-30">
+        <div class="well">
+            <button type="submit" name="update_and_edit" class="btn btn-primary" data-disable-after-click="true">
+                <i class="fa fa-save"></i>
+                {{ 'form.update_and_edit'|trans({}, 'back') }}
+            </button>
+            <button type="submit" name="update_and_list" class="btn btn-primary" data-disable-after-click="true">
+                <i class="fa fa-save"></i>
+                <i class="fa fa-list"></i>
+                {{ 'form.update_and_list'|trans({}, 'back') }}
+            </button>
+            {{ 'form.or'|trans({}, 'back') }}
+            <a href="{{ url('back_products_list') }}" class="btn btn-default">
+                <i class="fa fa-times-circle"></i>
+                {{ 'form.cancel'|trans({}, 'back') }}
+            </a>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock content_body %}
+
+{% block sidebarWrapper '' %}

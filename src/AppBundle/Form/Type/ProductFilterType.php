@@ -6,10 +6,11 @@ use AppBundle\Connector\ApiConnector;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 /**
- * FormType used to manage the creation and the update of products.
+ * Form type use to filter products on BACK.
  */
-class ProductType extends AbstractType
+class ProductFilterType extends AbstractType
 {
     /**
      * @var ApiConnector
@@ -25,43 +26,31 @@ class ProductType extends AbstractType
     }
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
+
         $builder
-            ->add('name',       'Symfony\Component\Form\Extension\Core\Type\TextType',
+            ->add('name', 'Symfony\Component\Form\Extension\Core\Type\TextType',
                 [
-                    'label' => 'form.label.name',
-                    'required' => true,
-                ]
-            )
-            ->add('description','Symfony\Component\Form\Extension\Core\Type\TextareaType',
-                [
-                    'label' => 'form.label.description',
+                    'label' => 'search.label.name',
                     'required' => false,
                 ]
             )
             ->add('price', 'Symfony\Component\Form\Extension\Core\Type\MoneyType',
                 [
-                    'label' => 'form.label.price',
-                    'required' => true,
+                    'label' => 'search.label.price',
+                    'required' => false,
                 ]
             )
-            ->add('photoFile',  'Symfony\Component\Form\Extension\Core\Type\FileType',
+            ->add('productType', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
                 [
-                    'label' => 'form.label.photo_file',
-                    'required' => true,
-                ]
-            )
-            ->add(
-                'productType',
-                'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
-                [
-                    'label' => 'form.label.product_type',
-                    'required' => true,
+                    'label' => 'search.label.productType',
+                    'required' => false,
                     'choices' => $this->getProductTypeChoiceList(),
+                    'empty_data' => array('form.empty_value.product_type' => null),
                 ]
             )
         ;
@@ -85,6 +74,14 @@ class ProductType extends AbstractType
         }, []);
 
         return $productTypes;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'back_product_filter';
     }
 
     /**

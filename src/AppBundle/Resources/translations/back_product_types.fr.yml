@@ -1,0 +1,37 @@
+list: "Liste des types de produits"
+create: "Création d'un nouvel type de produits"
+edit: "Modification du type de produits"
+delete: "Supprimer le type de produits"
+
+buttons:
+  create: "Créer un nouveau type de produits"
+
+tooltip:
+  create: "Créer un nouveau type de produits"
+  show-hide: "Afficher/Masquer le panneau"
+
+
+message:
+  success:
+    create: "Le type de produits a bien été créé"
+    update: "Vos modifications ont bien été enregistrées"
+    delete: "Le type de produits a bien été supprimé"
+  error:
+    delete: "Une erreur s'est produite lors de la suppression du type de produits"
+
+
+search:
+    title: "Zone de recherche :"
+    label:
+        name: "Nom"
+    submit: "Rechercher de types de produits"
+    reset: "Réinitialiser"
+
+
+form:
+  label:
+    name: Nom
+
+product_type:
+  headers:
+    name: Nom

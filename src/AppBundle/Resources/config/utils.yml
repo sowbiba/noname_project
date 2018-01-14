@@ -1,0 +1,5 @@
+services:
+  app.file_uploader.products:
+    class: AppBundle\Utils\FileUploader
+    arguments:
+        $targetDir: '%kernel.project_dir%/web%products_directory%'

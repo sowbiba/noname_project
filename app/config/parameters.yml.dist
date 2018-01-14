@@ -17,6 +17,8 @@ parameters:
     api_base_url: 'http://noname-api.dev'
 
     translation_domain: back
+    currency: '€'
+    products_directory: '/uploads/products/'
 
     tokens:
         - "abcd"

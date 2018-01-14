@@ -40,6 +40,8 @@ twig:
     globals:
         translation_domain : '%translation_domain%'
         locale: '%locale%'
+        currency: '%currency%'
+        products_directory: '%products_directory%'
     form_themes:
         - 'Form/bootstrap_3_layout.html.twig'
 

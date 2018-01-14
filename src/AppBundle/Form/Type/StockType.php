@@ -28,7 +28,7 @@ class StockType extends AbstractType
     {
         $resolver->setDefaults([
             'csrf_protection' => false,
-            'data_class' => 'AppBundle\Entity\Stock',
+            'translation_domain' => 'back_stocks',
         ]);
     }
 }

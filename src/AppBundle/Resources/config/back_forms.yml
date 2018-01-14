@@ -6,3 +6,11 @@ services:
   AppBundle\Form\Type\UserFilterType:
       arguments: ['@api_connector.api']
       tags: [form.type]
+
+  AppBundle\Form\Type\ProductType:
+      arguments: ['@api_connector.api']
+      tags: [form.type]
+
+  AppBundle\Form\Type\ProductFilterType:
+      arguments: ['@api_connector.api']
+      tags: [form.type]

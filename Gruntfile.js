@@ -219,6 +219,14 @@ module.exports = function(grunt) {
                     // Back/DeliveryType/list.html.twig
                     'web/js/delivery_types.js': [
                         'src/AppBundle/Resources/public/javascripts/pages/delivery_types.js'
+                    ],
+                    // Back/ProductType/list.html.twig
+                    'web/js/product_types.js': [
+                        'src/AppBundle/Resources/public/javascripts/pages/product_types.js'
+                    ],
+                    // Back/Product/list.html.twig
+                    'web/js/products.js': [
+                        'src/AppBundle/Resources/public/javascripts/pages/products.js'
                     ]
                 }
             }

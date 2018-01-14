@@ -94,10 +94,6 @@ class DeliveryTypeController extends BackController
                     'price' => $formData['price'],
                 ];
 
-                if (null !== $formData['password'] && '' !== $formData['password']) {
-                    $body = array_merge($body, ['password' => $formData['password']]);
-                }
-
                 $this->requestApi(ApiConnector::HTTP_METHOD_PUT, "/delivery-types/$deliveryTypeId", ['body' => $body]);
 
                 $this->addFlash('success', $this->translate('message.success.update', [], 'back_delivery_types'));

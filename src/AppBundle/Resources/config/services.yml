@@ -2,4 +2,5 @@ imports:
   - { resource: "connectors.yml" }
   - { resource: "loggers.yml" }
   - { resource: "security.yml" }
+  - { resource: "utils.yml" }
   - { resource: "back_forms.yml" }

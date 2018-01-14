@@ -1,0 +1,42 @@
+edit: "Gestion de stock : %product%"
+
+buttons:
+  create: "Créer un nouveau produit"
+
+tooltip:
+  create: "Créer un nouveau produit"
+  show-hide: "Afficher/Masquer le panneau"
+
+
+message:
+  success:
+    create: "Le produit a bien été créé"
+    update: "Vos modifications ont bien été enregistrées"
+    delete: "Le produit a bien été supprimé"
+  error:
+    delete: "Une erreur s'est produite lors de la suppression du produit"
+
+
+search:
+    title: "Zone de recherche :"
+    label:
+        name: "Nom"
+        price: "Prix"
+        productType: "Type de produit"
+    submit: "Rechercher de produits"
+    reset: "Réinitialiser"
+
+
+form:
+  label:
+    name: Nom
+    price: Prix
+    description: Description
+    photo_file: Image du produit
+    product_type: Type de produit
+
+product:
+  headers:
+    name: Nom
+    price: Prix
+    productType: Type de produit
